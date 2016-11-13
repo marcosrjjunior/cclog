@@ -17,6 +17,12 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
+        $user = auth()->user();
+
+        if ( ! $user->token) {
+            return redirect()->back();
+        }
+
         $project = Project::whereName($request->input('repo_name'))
             ->whereOwner($request->input('owner_name'))
             ->first();
@@ -27,10 +33,9 @@ class UserController extends Controller
             'name'     => $request->input('name'),
             'email'    => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'token'    => $request->input('token'),
+            'token'    => $user->token,
             'type'     => $request->input('type'),
         ]);
-
 
         $project->users()->attach($user->id, [
             'type'  => $request->input('type'),

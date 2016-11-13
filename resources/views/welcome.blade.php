@@ -69,21 +69,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">{{ trans('model.login') }}</a>
-                    <a href="{{ url('/register') }}">{{ trans('model.register') }}</a>
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
                     CcLog
-                </div>
-
-                <div class="links">
-                    <a href="#">Bonito</a>
-                    <a href="#">Cheiroso</a>
-                    <a href="#">Gostoso</a>
-                    <a href="#">Delícia</a>
-                    <a href="#">Filé</a>
                 </div>
             </div>
         </div>
