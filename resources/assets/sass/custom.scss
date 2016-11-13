@@ -1,6 +1,9 @@
-.inline-flex {
-    display: inline-flex;
+ul.inline {
     list-style-type: none;
+
+    .li {
+        display: inline;
+    }
 }
 
 .logs {
@@ -13,10 +16,18 @@
     }
 }
 
+.mt-5 {
+    margin-top: 5px !important;
+}
+
 .w-100 {
     width: 100%;
 }
 
 .r-color {
-    color: #923D62;
+    color: #923D62 !important;
+}
+
+textarea {
+    resize: vertical;
 }

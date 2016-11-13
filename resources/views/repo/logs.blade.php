@@ -9,61 +9,23 @@
 
     <section id="fh5co-services" data-section="services">
         <div class="container">
+            @if (auth()->user()->type == 1)
+                <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#create-report">
+                    <i class="fa fa-envelope" aria-hidden="true"></i> Reportar
+                </button>
+            @endif
+
             @if (auth()->user()->type == 0)
-                <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#add-user">
-                    <span class="glyphicon glyphicon-plus"></span> Adicionar Usuário
+                <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#create-user">
+                   <i class="fa fa-plus" aria-hidden="true"></i> {{ trans('model.create_user_title') }}
                 </button>
 
                 <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#delete-project">
-                    <span class="glyphicon glyphicon-trash"></span> {{ trans('model.delete_project_title') }}
+                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('model.delete_project_title') }}
                 </button>
-
-                <div class="modal fade r-color" id="delete-project" tabindex="-1" role="dialog" aria-labelledby="deleteProjectLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form class="form-horizontal" method="DELETE" action="{{ route('user.create', ['owner_name' => $ownerName, 'repo_name' => $repoName]) }}">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('model.close') }}"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="deleteProjectLabel">{{ trans('model.delete_project_title') }}</h4>
-                                </div>
-
-                                <div class="modal-body">
-                                    {{ trans('model.delete_project_message') }}
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">{{ trans('model.delete') }}</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade r-color" id="add-user" tabindex="-1" role="dialog" aria-labelledby="addUserLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form class="form-horizontal" method="POST" action="{{ route('user.create', ['owner_name' => $ownerName, 'repo_name' => $repoName]) }}">
-
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('model.close') }}"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="addUserLabel">{{ trans('model.add_user_title') }}</h4>
-                                </div>
-                                <div class="modal-body">
-                                    @include('repo._form-create-user')
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('model.close') }}</button>
-                                    <button type="submit" class="btn btn-primary">{{ trans('model.add_user_title') }}</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
             @endif
+
+            @include('repo.modals')
 
             <div class="row">
                 <div class="col-md-12 section-heading text-left">

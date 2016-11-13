@@ -36,11 +36,10 @@ class HomeController extends Controller
         $projects = $user->projects;
         $repos    = [];
 
-        if ($user->type == 0 && $user->token && $user->github_user) {
+        if ($user->type == 0 && $user->token && $user->nickname) {
             $client = $this->gitAuth($user->token);
-            // Change to Select a Organization Name Repositories
 
-            $repos  = $client->api('user')->repositories($user->github_user);
+            $repos  = $client->api('user')->repositories($user->nickname);
             $repos  = collect($repos)->filter(function($repo) use ($projects) {
                 return ! $repo['fork'] && ! $projects->contains('full_name', $repo['full_name']);
             });
@@ -65,13 +64,41 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function projectDelete(Request $request)
+    {
+        Project::whereName($request->input('repo_name'))
+            ->whereOwner($request->input('owner_name'))
+            ->delete();
+
+        return redirect()->route('home');
+    }
+
     public function logs($ownerName, $repoName)
     {
         $user   = auth()->user();
         $client = $this->gitAuth($user->token);
 
-        $logs = $client->api('issue')->all($ownerName, $repoName, ['labels' => 'cs', 'state' => 'close']);
+        $logs = $client->api('issue')->all($ownerName, $repoName, ['labels' => env('CCLOG_LABEL_NAME'), 'state' => 'close']);
 
-        return view('repo.logs', compact('logs', 'ownerName', 'repoName'));
+        $reports = [];
+        if ($user->type == 1) {
+            $reports = $client->api('issue')->all($ownerName, $repoName, ['labels' => env('CCLOG_REPORT_LABEL_NAME'), 'state' => 'open']);
+        }
+
+        return view('repo.logs', compact('logs', 'reports', 'ownerName', 'repoName'));
+    }
+
+    public function reportCreate(Request $request)
+    {
+        $user   = auth()->user();
+        $client = $this->gitAuth($user->token);
+
+        $client->api('issue')->create($request->input('owner_name'), $request->input('repo_name'), [
+            'title'  => $request->input('title'),
+            'body'   => $request->input('body'),
+            'labels' => [env('CCLOG_REPORT_LABEL_NAME')]
+        ]);
+
+        return redirect()->back();
     }
 }

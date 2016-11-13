@@ -58,17 +58,3 @@
         @endif
     </div>
 </div>
-
-<div class="form-group{{ $errors->has('token') ? ' has-error' : '' }}">
-    <label for="token" class="col-md-4 control-label">{{ trans('model.github_token') }}</label>
-
-    <div class="col-md-6">
-        <input id="token" type="token" class="form-control" name="token" required>
-
-        @if ($errors->has('token'))
-            <span class="help-block">
-                <strong>{{ $errors->first('token') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
