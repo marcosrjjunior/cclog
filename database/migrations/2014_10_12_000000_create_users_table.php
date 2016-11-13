@@ -17,10 +17,14 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('type', 1)->default(0);
+
+            // Github
+            $table->string('github_id')->unique()->nullable();
+            $table->string('nickname')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('token')->nullable();
-            $table->string('github_user')->nullable();
 
             $table->rememberToken();
             $table->nullableTimestamps();
