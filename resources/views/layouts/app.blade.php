@@ -10,9 +10,10 @@
 
     <title>{{ config('app.name', 'CcLog') }}</title>
 
-    <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    {{-- <link href="/css/app.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ elixir('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/style3.css') }}">
+
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 
     <!-- Scripts -->
     <script>
@@ -52,7 +53,6 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">{{ trans('model.login') }}</a></li>
-                            <li><a href="{{ url('/register') }}">{{ trans('model.register') }}</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
