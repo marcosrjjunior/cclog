@@ -68,7 +68,7 @@
 
                                 <button class="btn btn-primary">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    {{ $repo['name'] }}
+                                    {{ $repo['full_name'] }}
                                 </button>
                             </form>
                         </li>

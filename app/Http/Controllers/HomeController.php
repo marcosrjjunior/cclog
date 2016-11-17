@@ -34,18 +34,34 @@ class HomeController extends Controller
     {
         $user     = auth()->user();
         $projects = $user->projects;
-        $repos    = [];
 
         if ($user->type == 0 && $user->token && $user->nickname) {
-            $client = $this->gitAuth($user->token);
-
-            $repos  = $client->api('user')->repositories($user->nickname);
-            $repos  = collect($repos)->filter(function($repo) use ($projects) {
-                return ! $repo['fork'] && ! $projects->contains('full_name', $repo['full_name']);
-            });
+            $repos = $this->getRepos($user, $projects);
         }
 
         return view('home', compact('repos', 'projects'));
+    }
+
+    public function getRepos($user, $userProjects)
+    {
+        $repos    = [];
+        $myRepos  = [];
+
+        $client   = $this->gitAuth($user->token);
+
+        $orgs     = $client->api('user')->organizations($user->nickname);
+
+        foreach ($orgs as $key => $org) {
+            $repos = array_merge($repos, $client->api('repo')->org($org['login'], ['type' => 'all', 'per_page' => 999]));
+        }
+
+        $myRepos = $client->api('user')->repositories($user->nickname, 'owner');
+
+        $myRepos = collect($myRepos)->filter(function($repo) use ($userProjects) {
+            return ! $repo['fork'] && ! $userProjects->contains('full_name', $repo['full_name']);
+        })->toArray();
+
+        return array_merge($repos, $myRepos);
     }
 
     public function projectCreate(Request $request)
