@@ -62,7 +62,7 @@ class GithubController extends Controller
     private function findOrCreateUser($githubUser)
     {
         if ($authUser = User::whereGithubId($githubUser->id)->first()) {
-            return $authUser;
+            return $this->updateToken($authUser, $githubUser);
         }
 
         return User::create([
@@ -73,6 +73,16 @@ class GithubController extends Controller
             'avatar'    => $githubUser->avatar,
             'token'     => $githubUser->refreshToken ?: $githubUser->token,
         ]);
+    }
+
+    public function updateToken($user, $githubData)
+    {
+        if ($user->token != $githubData->token) {
+            $user->token = $githubData->token;
+            $user->save();
+        }
+
+        return $user;
     }
 
 }
