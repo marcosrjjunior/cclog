@@ -55,6 +55,10 @@ class HomeController extends Controller
             $repos = array_merge($repos, $client->api('repo')->org($org['login'], ['type' => 'all', 'per_page' => 999]));
         }
 
+        $repos = collect($repos)->filter(function($repo) use ($userProjects) {
+            return ! $userProjects->contains('full_name', $repo['full_name']);
+        })->toArray();
+
         $myRepos = $client->api('user')->repositories($user->nickname, 'owner');
 
         $myRepos = collect($myRepos)->filter(function($repo) use ($userProjects) {
@@ -94,6 +98,10 @@ class HomeController extends Controller
         $user   = auth()->user();
         $client = $this->gitAuth($user->token);
 
+        if (! $this->userHasProjects($user, $ownerName, $repoName)) {
+            return redirect()->route('home');
+        }
+
         $logs = $client->api('issue')->all($ownerName, $repoName, ['labels' => env('CCLOG_LABEL_NAME'), 'state' => 'close']);
 
         $reports = [];
@@ -102,6 +110,17 @@ class HomeController extends Controller
         }
 
         return view('repo.logs', compact('logs', 'reports', 'ownerName', 'repoName'));
+    }
+
+    public function userHasProjects($user, $ownerName, $repoName)
+    {
+        $projects = $user->projects->where('owner', $ownerName)->where('name', $repoName);
+
+        if ($projects->isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 
     public function reportCreate(Request $request)
