@@ -41,10 +41,13 @@
             <div class="row">
                 @foreach ($logs as $log)
                 <div class="col-md-12 logs">
-                    {{-- {{ $log['labels'][0]['color'] }} --}}
                     <div class="col-md-2 col-sm-2 fh5co-service to-animate">
                         <h3 class="to-animate-2">
-                            {{ \Carbon\Carbon::parse($log['created_at'])->format('d/m/Y') }}
+                            @if (app()->isLocale('br'))
+                                {{ \Carbon\Carbon::parse($log['created_at'])->format('d/m/Y') }}
+                            @else
+                                {{ \Carbon\Carbon::parse($log['created_at'])->format('m/d/Y') }}
+                            @endif
                         </h3>
                     </div>
 

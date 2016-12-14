@@ -1,8 +1,17 @@
 # CcLog
 
->
+Make your clients aware of your projects releases.
 
-## Setup (Laravel 5.3)
+## Screenshots
+<a href="#"><img src="https://cloud.githubusercontent.com/assets/5287262/21198792/d67c3cee-c227-11e6-9540-1b272c8b50a2.png" alt="c-helps"></a>
+<a href="#"><img src="https://cloud.githubusercontent.com/assets/5287262/21198945/804d339a-c228-11e6-9d01-5f2cb0cefa39.png" alt="c-helps"></a>
+
+Your clients doesn't need create a github account.
+Langs (en, br).
+Control logs by issue labels.
+Multiple Projects.
+
+## Setup
 
 First, create a new github app, visit [GitHub's New OAuth Application page](https://github.com/settings/applications/new), fill out the form, and grab your client ID, secret and callback URL.
 

@@ -44,7 +44,7 @@
             <div class="row watch-video text-center to-animate fadeInRight animated">
                 <div class="col-md-12 section-heading text-center">
                     @if ($repos)
-                        <h2 class="to-animate fadeInUp animated">Repositórios</h2>
+                        <h2 class="to-animate fadeInUp animated">{{ trans('model.repositories') }}</h2>
                     @endif
 
                     <ul class="inline">
