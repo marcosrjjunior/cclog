@@ -42,17 +42,6 @@
 
             @if (auth()->user()->type == 0)
             <div class="row watch-video text-center to-animate fadeInRight animated">
-                @if (! $repos)
-                    <div class="col-md-12 section-heading text-center">
-                        <h2 class="to-animate fadeInUp animated">{{ trans('model.repositories') }}</h2>
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 subtext to-animate fadeInUp animated">
-                            <h3>{{ trans('model.message.repositories') }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
                 <div class="col-md-12 section-heading text-center">
                     @if ($repos)
                         <h2 class="to-animate fadeInUp animated">Repositórios</h2>

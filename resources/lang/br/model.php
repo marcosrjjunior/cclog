@@ -11,12 +11,12 @@ return [
     'github'   => 'Acessar Github',
 
     'projects'      => 'Projetos',
-    'projects_slug' => 'Faça o que você ama',
 
     'repositories'  => 'Repositórios',
 
-    'message' => [
-        'repositories' => 'Não conseguimos acessar suas informações, por favor cadastre as informações abaixo para que possamos listar seus repositórios.'
+    'user_types' => [
+        '0' => 'Admin',
+        '1' => 'Cliente'
     ],
 
     'name'         => 'Nome',
@@ -33,9 +33,6 @@ return [
     'delete_project_title'   => 'Deletar Projeto',
     'delete_keep_project'    => 'Não, manter Projeto',
     'delete_project_message' => 'Realmente quer apagar esse projeto?',
-
-    'delete_user_title'      => 'Deletar Usuário',
-    'delete_user_message'    => 'Realmente quer apagar esse projeto?',
 
     'create_user_title'      => 'Adicionar Usuário',
 

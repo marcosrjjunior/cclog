@@ -47,8 +47,9 @@
     <div class="col-md-6">
         <select class="form-control" name="type" id="type">
             <option value=""></option>
-            <option value="0">All</option>
-            <option value="1">Only See</option>
+            @foreach(trans('model.user_types') as $key => $type)
+                <option value="{{ $key }}">{{ $type }}</option>
+            @endforeach
         </select>
 
         @if ($errors->has('type'))
