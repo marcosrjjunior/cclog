@@ -12,7 +12,7 @@
                         <div class="col-md-8 col-md-offset-2">
                             <h1 class="to-animate">{{ trans('model.projects') }}</h1>
                             <h2 class="to-animate">
-                                {{ trans('model.projects_slug') }}</a>
+                                {{ \App\Http\Controllers\Inspiring::quote() }}
                             </h2>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
                                 <input type="hidden" name="repo_owner" value="{{ $repo['owner']['login'] }}">
                                 <input type="hidden" name="repo_name" value="{{ $repo['name'] }}">
 
-                                <button class="btn btn-primary">
+                                {{ $repo['full_name'] }}
+                                <button class="btn btn-primary mh-10 mb-7">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    {{ $repo['full_name'] }}
                                 </button>
                             </form>
                         </li>
