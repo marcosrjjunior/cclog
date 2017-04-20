@@ -36,8 +36,6 @@
     <link rel="stylesheet" href="{{ elixir('css/icomoon.css') }}">
     <!-- Simple Line Icons -->
     <link rel="stylesheet" href="{{ elixir('css/simple-line-icons.css') }}">
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ elixir('css/magnific-popup.css') }}">
     <!-- Bootstrap  -->
     <link rel="stylesheet" href="{{ elixir('css/bootstrap.css') }}">
 
@@ -67,14 +65,6 @@
         <script src="{{ elixir('js/jquery.waypoints.min.js') }}"></script>
         <!-- Stellar Parallax -->
         <script src="{{ elixir('js/jquery.stellar.min.js') }}"></script>
-        <!-- Counter -->
-        <script src="{{ elixir('js/jquery.countTo.js') }}"></script>
-        <!-- Magnific Popup -->
-        <script src="{{ elixir('js/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ elixir('js/magnific-popup-options.js') }}"></script>
-
-        <!-- For demo purposes only styleswitcher ( You may delete this anytime ) -->
-        <script src="{{ elixir('js/jquery.style.switcher.js') }}"></script>
 
         <!-- Main JS (Do not remove) -->
         <script src="{{ elixir('js/main.js') }}"></script>
