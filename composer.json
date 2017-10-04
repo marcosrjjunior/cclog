@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "marcosrjjunior/cclog",
+    "description": " Make your clients aware of your projects releases",
+    "keywords": ["php" "laravel" "changelog", "release-page", "clients"],
     "license": "MIT",
     "type": "project",
     "require": {
