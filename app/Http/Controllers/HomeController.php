@@ -102,7 +102,11 @@ class HomeController extends Controller
             return redirect()->route('home');
         }
 
-        $logs = $client->api('issue')->all($ownerName, $repoName, ['labels' => env('CCLOG_LABEL_NAME'), 'state' => 'close']);
+        if (env('CCLOG_LOGS_FROM') == 'issue') {
+            $logs = $client->api('issue')->all($ownerName, $repoName, ['labels' => env('CCLOG_LABEL_NAME'), 'state' => 'close']);
+        } else if (env('CCLOG_LOGS_FROM') == 'release') {
+            $logs = $client->api('repo')->releases()->all($ownerName, $repoName);
+        }
 
         $reports = [];
         if ($user->type == 1) {

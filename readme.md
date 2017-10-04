@@ -7,7 +7,7 @@ Make your clients aware of your projects releases.
 
 Your clients doesn't need create a github account.  
 Langs (en, br).  
-Control logs by issue labels.  
+Control logs by release or issue labels.  
 Multiple Projects.  
 
 ## Setup
@@ -28,6 +28,7 @@ GITHUB_ID=XXXXX
 GITHUB_SECRET=XXXXXXXXXXXXXXXXXX
 GITHUB_CALLBACK_URL=http://URL/auth/github/callback
 
+CCLOG_LOGS_FROM=release OR issue
 CCLOG_LABEL_NAME=cclog
 CCLOG_REPORT_LABEL_NAME=cclog_report
 ````
