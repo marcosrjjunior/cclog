@@ -11,7 +11,7 @@
         <div class="container">
             @if (auth()->user()->type == 1)
                 <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#create-report">
-                    <i class="fa fa-envelope" aria-hidden="true"></i> Reportar
+                    <i class="fa fa-envelope" aria-hidden="true"></i> {{ trans('model.create_report_title') }}
                 </button>
             @endif
 
